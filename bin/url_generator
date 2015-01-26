@@ -1,0 +1,32 @@
+#!/bin/bash
+
+function usage() {
+   echo "Usage: $0 <keywords>"
+}
+
+# read from standard in
+if [ $# -eq 0 ]; then
+   while read line; do
+      $0 "$line"
+   done
+fi
+
+if [ $# -ne 1 ]; then
+   usage
+   exit 1
+fi
+
+# ghetto URL-encode the search term(s)
+Q=`echo $@ | sed 's/ /+/g'`
+
+# output the URLs to crawl
+echo "http://www.tradetang.com/wholesale/${Q}.html"
+echo "http://www.chinawholesaletown.com/search/${Q}/"
+echo "http://www.amandachina.com/index.php?main_page=advanced_search_result&inc_subcat=1&search_in_description=1&keyword=${Q}&categories_id="
+echo "https://www.chinavasion.com/search?q=${Q}"
+echo "http://www.powerwholesale.net/Wholesale/${Q}-is-1-sid-1.html"
+echo "http://www.everbuying.net/china-${Q}.html"
+echo "http://www.dealsmachine.com/affordable-${Q}/"
+echo "http://buytome.com/en/goods/search/list?k=${Q}"
+echo "http://www.everychina.com/search/list-${Q}.html"
+echo "http://www.dhgate.com/w/${Q}/1.html"
