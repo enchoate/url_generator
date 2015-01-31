@@ -18,7 +18,7 @@ if [ $# -ne 1 ]; then
 fi
 
 # ghetto URL-encode the search term(s)
-Q=`echo $@ | sed 's/ /+/g'`
+Q=`echo $@ | tr '[A-Z]' '[a-z]' | sed 's/ /+/g'`
 
 # output the URLs to crawl
 echo "http://www.tradetang.com/wholesale/${Q}.html"
